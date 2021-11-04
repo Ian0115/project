@@ -1,0 +1,111 @@
+<%- include('parts/head1') %>
+
+    <body>
+
+        <!--PreLoader-->
+        <div class="loader">
+            <div class="loader-inner">
+                <div class="circle"></div>
+            </div>
+        </div>
+        <!--PreLoader Ends-->
+
+        <!-- header -->
+        <%- include('parts/menu') %>
+            <!-- end breadcrumb section -->
+            <div class="breadcrumb-section breadcrumb-bg" style="background-image: url(/img/leaf2.jpg);">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 offset-lg-2 text-center">
+                            <div class="breadcrumb-text">
+                                <p>JOIN US</p>
+                                <h1>SIGN UP</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- latest news -->
+            <div class="feature-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="image-column col-lg-4">
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="featured-text">
+                                <form name="signup_form" id="signup_form" onsubmit="checkForm(); return false;">
+                                    <h2 class="pb-3">WELCOME! <span class="orange-text">SIGNUP</span></h2>
+                                    <div class="form-group">
+                                        <label for="email">登入帳號</label>
+                                        <input type="email" class="form-control" id="email" name="email"
+                                            placeholder="Username" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="password">會員密碼</label>
+                                        <input type="password" class="form-control" id="password" name="password"
+                                            placeholder="Password" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password2">再次輸入密碼</label>
+                                        <input type="password" class="form-control" id="password2" name="password2"
+                                            placeholder="Repeat Your Password " required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="tel">電話號碼</label>
+                                        <input type="tel" class="form-control" id="tel" name="tel"
+                                            placeholder="Telephone " required pattern="09\d{2}-?\d{3}-?\d{3}">
+                                    </div>
+                                    <div id="info" class="alert alert-success" role="alert" style="display: none">
+                                    </div>
+                                    <p>
+                                        <input type="submit" value="Create My Account" id="submit">
+                                    </p>
+                                    <div id="info" class="alert alert-success" role="alert" style="display: none"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!-- end latest news -->
+
+
+
+            <!-- copyright -->
+            <%- include('parts/footer') %>
+                <!-- end copyright -->
+
+                <!-- jquery -->
+                <%- include('parts/js') %>
+
+                    <script>
+                        const info = $('#info');
+
+                        function checkForm() {
+                            $.post('', $(document.signup_form).serialize(), function (data) {
+                                console.log('hi');
+                                if (data.success) {
+                                    info.removeClass('alert-danger').addClass('alert-success');
+                                    info.html('註冊成功');
+                                    info.slideDown(); // 下拉顯示
+                                    // 新增成功後回到首頁
+                                    setTimeout(function () {
+                                        location.href = '/login';
+                                    }, 3000);
+                                } else {
+                                    info.removeClass('alert-success').addClass('alert-danger');
+                                    info.html(data.error);
+                                    info.slideDown();
+                                    setTimeout(function () {
+                                        info.slideUp(); // 上捲後隱藏
+                                    }, 3000);
+                                }
+                            }, 'json');
+                            return false;
+                        }
+                    </script>
+    </body>
+
+    </html>

@@ -1,0 +1,834 @@
+<link href="css/health.css" rel="stylesheet" />
+<%- include('parts/head1') %>
+
+    <body>
+
+        <!--PreLoader-->
+        <div class="loader">
+            <div class="loader-inner">
+                <div class="circle"></div>
+            </div>
+        </div>
+        <!--PreLoader Ends-->
+        <%- include('parts/menu') %>
+            <!-- breadcrumb-section -->
+            <div class="breadcrumb-section breadcrumb-bg" style="background-image: url(/img/leaf4.jpg);">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 offset-lg-2 text-center">
+                            <div class="breadcrumb-text">
+                                <p>Fresh and Organic</p>
+                                <h1>My Photo</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end breadcrumb section -->
+            <% if(session.users){ %>
+
+
+            <div class="product-filters filters filter-button-group">
+                <ul>
+                    <li class="active"><a href="javascript:void(0);" data-filter="*">All</a></li>
+                    <li><a href="javascript:void(0);" data-filter="HEALTHY">HEALTHY</a></li>
+                    <li><a href="javascript:void(0);" data-filter="UNHEALTHY">UNHEALTHY</a></li>
+                    <li><a href="javascript:void(0);" data-filter="UNKNOWN">UNKNOWN</a></li>
+                </ul>
+            </div>
+            <div class="isotope-pager product-filters active" style="padding-top: 15px; text-align:center;" active>
+            </div>
+            <div id="container" class="isotope">
+
+                <% for(let p of rs) {%> 
+                <div class="grid-item " data-filter="HEALTHY" data-bs-toggle="modal" data-bs-target="#feedbackModal<%= p.sid %>">
+                    <a class="popupimg">
+                        <img src="<%= p.ap_imgpath %>">
+                    </a>
+                    <div class="overlay">HEALTHY</div>
+
+                </div>
+                
+                <div class="modal fade" id="feedbackModal<%= p.sid %>" tabindex="-1" aria-labelledby="feedbackModalLabel<%= p.sid %>" 
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-gradient-primary-to-secondary p-4">
+                                <h5 class="modal-title font-alt text-white" id="feedbackModalLabel">健康狀態</h5>
+                                <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="single-product mt-150 mb-150">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="single-product-img">
+                                                <img style="width:300px" src="<%= p.ap_imgpath %>" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="single-product-content" style="padding: 30px;">
+                                                <h3>青蘋果</h3>
+
+                                                <p>我的健康狀態
+                                                </p>
+
+                                                <p><strong>其他備註 </strong>什麼病</p>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+                <!-- <div class="grid-item" data-filter="UNKNOWN" data-bs-toggle="modal" data-bs-target="#feedbackModal1">
+                    <a class="popupimg">
+                        <img src="img/6.jpg">
+                    </a>
+                    <div class="overlay">UNKNOWN</div>
+                </div>
+
+                <div class="modal fade" id="feedbackModal1" tabindex="-1" aria-labelledby="feedbackModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-gradient-primary-to-secondary p-4">
+                                <h5 class="modal-title font-alt text-white" id="feedbackModalLabel">健康狀態</h5>
+                                <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="single-product mt-150 mb-150">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="single-product-img">
+                                                <img style="height:250px" src="img/6.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="single-product-content" style="padding: 30px;">
+                                                <h3>青蘋果</h3>
+
+                                                <p>我的健康狀態
+                                                </p>
+
+                                                <p><strong>其他備註 </strong>什麼病</p>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-item" data-filter="HEALTHY" data-bs-toggle="modal" data-bs-target="#feedbackModal2">
+                    <a class="popupimg">
+                        <img src="img/4.jpg">
+                    </a>
+                    <div class="overlay">HEALTHY</div>
+                </div>
+
+                <div class="modal fade" id="feedbackModal2" tabindex="-1" aria-labelledby="feedbackModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-gradient-primary-to-secondary p-4">
+                                <h5 class="modal-title font-alt text-white" id="feedbackModalLabel">健康狀態</h5>
+                                <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="single-product mt-150 mb-150">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="single-product-img">
+                                                <img style="width:300px" src="img/4.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="single-product-content" style="padding: 30px;">
+                                                <h3>青蘋果</h3>
+
+                                                <p>我的健康狀態
+                                                </p>
+
+                                                <p><strong>其他備註 </strong>什麼病</p>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-item" data-filter="UNKNOWN" data-bs-toggle="modal" data-bs-target="#feedbackModal3">
+                    <a class="popupimg">
+                        <img src="img/2.jpg">
+                    </a>
+                    <div class="overlay">UNKNOWN</div>
+                </div>
+
+                <div class="modal fade" id="feedbackModal3" tabindex="-1" aria-labelledby="feedbackModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-gradient-primary-to-secondary p-4">
+                                <h5 class="modal-title font-alt text-white" id="feedbackModalLabel">健康狀態</h5>
+                                <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="single-product mt-150 mb-150">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="single-product-img">
+                                                <img style="width:300px" src="img/2.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="single-product-content" style="padding: 30px;">
+                                                <h3>青蘋果</h3>
+
+                                                <p>我的健康狀態
+                                                </p>
+
+                                                <p><strong>其他備註 </strong>什麼病</p>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-item" data-filter="HEALTHY" data-bs-toggle="modal" data-bs-target="#feedbackModal4">
+                    <a class="popupimg">
+                        <img src="img/3.jpg">
+                    </a>
+                    <div class="overlay">HEALTHY</div>
+                </div>
+
+                <div class="modal fade" id="feedbackModal4" tabindex="-1" aria-labelledby="feedbackModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-gradient-primary-to-secondary p-4">
+                                <h5 class="modal-title font-alt text-white" id="feedbackModalLabel">健康狀態</h5>
+                                <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="single-product mt-150 mb-150">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="single-product-img">
+                                                <img style="width:300px" src="img/3.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="single-product-content" style="padding: 30px;">
+                                                <h3>青蘋果</h3>
+
+                                                <p>我的健康狀態
+                                                </p>
+
+                                                <p><strong>其他備註 </strong>什麼病</p>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-item" data-filter="UNHEALTHY" data-bs-toggle="modal" data-bs-target="#feedbackModal5">
+                    <a class="popupimg">
+                        <img src="img/5.jpg">
+                    </a>
+                    <div class="overlay">UNHEALTHY</div>
+                </div>
+
+                <div class="modal fade" id="feedbackModal5" tabindex="-1" aria-labelledby="feedbackModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-gradient-primary-to-secondary p-4">
+                                <h5 class="modal-title font-alt text-white" id="feedbackModalLabel">健康狀態</h5>
+                                <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="single-product mt-150 mb-150">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="single-product-img">
+                                                <img style="width:300px" src="img/5.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="single-product-content" style="padding: 30px;">
+                                                <h3>青蘋果</h3>
+
+                                                <p>我的健康狀態
+                                                </p>
+
+                                                <p><strong>其他備註 </strong>什麼病</p>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-item" data-filter="UNHEALTHY" data-bs-toggle="modal" data-bs-target="#feedbackModal6">
+                    <a class="popupimg">
+                        <img src="img/8.jpg">
+                    </a>
+                    <div class="overlay">UNHEALTHY</div>
+                </div>
+
+                <div class="modal fade" id="feedbackModal6" tabindex="-1" aria-labelledby="feedbackModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-gradient-primary-to-secondary p-4">
+                                <h5 class="modal-title font-alt text-white" id="feedbackModalLabel">健康狀態</h5>
+                                <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="single-product mt-150 mb-150">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="single-product-img">
+                                                <img style="width:300px" src="img/8.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="single-product-content" style="padding: 30px;">
+                                                <h3>青蘋果</h3>
+
+                                                <p>我的健康狀態
+                                                </p>
+
+                                                <p><strong>其他備註 </strong>什麼病</p>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-item" data-filter="UNKNOWN" data-bs-toggle="modal" data-bs-target="#feedbackModal7">
+                    <a class="popupimg">
+                        <img src="img/amosbarzeev138099unsplashmin.jpg">
+                    </a>
+                    <div class="overlay">UNKNOWN</div>
+                </div>
+
+                <div class="modal fade" id="feedbackModal7" tabindex="-1" aria-labelledby="feedbackModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-gradient-primary-to-secondary p-4">
+                                <h5 class="modal-title font-alt text-white" id="feedbackModalLabel">健康狀態</h5>
+                                <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="single-product mt-150 mb-150">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="single-product-img">
+                                                <img style="width:300px" src="img/amosbarzeev138099unsplashmin.jpg"
+                                                    alt="">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            <div class="single-product-content" style="padding: 30px;">
+                                                <h3>青蘋果</h3>
+
+                                                <p>我的健康狀態
+                                                </p>
+
+                                                <p><strong>其他備註 </strong>什麼病</p>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-item" data-filter="UNHEALTHY" data-bs-toggle="modal" data-bs-target="#feedbackModal8">
+                    <a class="popupimg">
+                        <img src="img/billionphotos1704770.jpg">
+                    </a>
+                    <div class="overlay">UNHEALTHY</div>
+                </div>
+
+                <div class="modal fade" id="feedbackModal8" tabindex="-1" aria-labelledby="feedbackModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-gradient-primary-to-secondary p-4">
+                                <h5 class="modal-title font-alt text-white" id="feedbackModalLabel">健康狀態</h5>
+                                <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="single-product mt-150 mb-150">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="single-product-img">
+                                                <img style="width:300px" src="img/billionphotos1704770.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="single-product-content" style="padding: 30px;">
+                                                <h3>青蘋果</h3>
+
+                                                <p>我的健康狀態
+                                                </p>
+
+                                                <p><strong>其他備註 </strong>什麼病</p>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-item" data-filter="UNKNOWN" data-bs-toggle="modal" data-bs-target="#feedbackModal9">
+                    <a class="popupimg">
+                        <img src="img/cd.jpg">
+                    </a>
+                    <div class="overlay">UNKNOWN</div>
+                </div>
+
+                <div class="modal fade" id="feedbackModal9" tabindex="-1" aria-labelledby="feedbackModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-gradient-primary-to-secondary p-4">
+                                <h5 class="modal-title font-alt text-white" id="feedbackModalLabel">健康狀態</h5>
+                                <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="single-product mt-150 mb-150">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="single-product-img">
+                                                <img style="width:300px" src="img/cd.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="single-product-content" style="padding: 30px;">
+                                                <h3>青蘋果</h3>
+
+                                                <p>我的健康狀態
+                                                </p>
+
+                                                <p><strong>其他備註 </strong>什麼病</p>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-item" data-filter="UNKNOWN" data-bs-toggle="modal" data-bs-target="#feedbackModal10">
+                    <a class="popupimg">
+                        <img src="img/marinakhrapova347688unsplashmin.jpg">
+                    </a>
+                    <div class="overlay">UNKNOWN</div>
+                </div>
+
+                <div class="modal fade" id="feedbackModal10" tabindex="-1" aria-labelledby="feedbackModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-gradient-primary-to-secondary p-4">
+                                <h5 class="modal-title font-alt text-white" id="feedbackModalLabel">健康狀態</h5>
+                                <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="single-product mt-150 mb-150">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="single-product-img">
+                                                <img style="width:300px" src="img/marinakhrapova347688unsplashmin.jpg"
+                                                    alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="single-product-content" style="padding: 30px;">
+                                                <h3>青蘋果</h3>
+
+                                                <p>我的健康狀態
+                                                </p>
+
+                                                <p><strong>其他備註 </strong>什麼病</p>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-item" data-filter="HEALTHY" data-bs-toggle="modal" data-bs-target="#feedbackModal11">
+                    <a class="popupimg">
+                        <img src="img/nachodominguezargenta511475unsplashmin.jpg">
+                    </a>
+                    <div class="overlay">HEALTHY</div>
+                </div>
+
+                <div class="modal fade" id="feedbackModal11" tabindex="-1" aria-labelledby="feedbackModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-gradient-primary-to-secondary p-4">
+                                <h5 class="modal-title font-alt text-white" id="feedbackModalLabel">健康狀態</h5>
+                                <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="single-product mt-150 mb-150">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="single-product-img">
+                                                <img style="width:300px"
+                                                    src="img/nachodominguezargenta511475unsplashmin.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="single-product-content" style="padding: 30px;">
+                                                <h3>青蘋果</h3>
+
+                                                <p>我的健康狀態
+                                                </p>
+
+
+                                                <strong>其他備註 </strong><span id="sp">什麼病</span>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-item" data-filter="UNKNOWN" data-bs-toggle="modal" data-bs-target="#feedbackModal12">
+                    <a class="popupimg">
+                        <img src="img/Untitled6min.jpg">
+                    </a>
+                    <div class="overlay">UNKNOWN</div>
+                </div>
+
+                <div class="modal fade" id="feedbackModal12" tabindex="-1" aria-labelledby="feedbackModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-gradient-primary-to-secondary p-4">
+                                <h5 class="modal-title font-alt text-white" id="feedbackModalLabel">健康狀態</h5>
+                                <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="single-product mt-150 mb-150">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="single-product-img">
+                                                <img style="height:250px" src="img/Untitled6min.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="single-product-content" style="padding: 30px;">
+                                                <h3>青蘋果</h3>
+
+                                                <p>我的健康狀態
+                                                </p>
+
+
+                                                <strong>其他備註 </strong>什麼病
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <% } else { %>
+                <div class="container latest-news pt-150 pb-150">
+                    <div class="col-lg-12 col-md-6">
+                        <div class="news-text-box" style="text-align: center;">
+                            <a href="/login ">
+                                <h2>WELCOME
+                                    <span class="orange-text">BACK</span>
+                                    <h3>請登入
+                                        <i class="green-text fas fa-leaf"></i>
+                                    </h3>
+                                </h2>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+
+            <!-- footer -->
+            <%- include('parts/footer') %>
+                <!-- end copyright -->
+
+                <!-- jquery -->
+                <%- include('parts/js') %>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+                    <!-- Core theme JS-->
+                    <script src="js/health.js"></script>
+                    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+                    <!-- * *                               SB Forms JS                               * *-->
+                    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+                    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+                    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+                    <script>
+                        $(document).ready(function () {
+
+                            var itemSelector = '.grid-item';
+
+                            var $container = $('#container').isotope({
+                                itemSelector: itemSelector,
+                                masonry: {
+                                    columnWidth: itemSelector,
+                                    isFitWidth: true
+                                }
+                            });
+
+                            //Ascending order
+                            var responsiveIsotope = [
+                                [480, 7],
+                                [720, 10]
+                            ];
+
+                            var itemsPerPageDefault = 8;
+                            var itemsPerPage = defineItemsPerPage();
+                            var currentNumberPages = 1;
+                            var currentPage = 1;
+                            var currentFilter = '*';
+                            var filterAtribute = 'data-filter';
+                            var pageAtribute = 'data-page';
+                            var pagerClass = 'isotope-pager';
+
+                            function changeFilter(selector) {
+                                $container.isotope({
+                                    filter: selector
+                                });
+                            }
+
+
+                            function goToPage(n) {
+                                currentPage = n;
+
+                                var selector = itemSelector;
+                                selector += (currentFilter != '*') ? '[' + filterAtribute + '="' + currentFilter + '"]' : '';
+                                selector += '[' + pageAtribute + '="' + currentPage + '"]';
+
+                                changeFilter(selector);
+                            }
+
+                            function defineItemsPerPage() {
+                                var pages = itemsPerPageDefault;
+
+                                for (var i = 0; i < responsiveIsotope.length; i++) {
+                                    if ($(window).width() <= responsiveIsotope[i][0]) {
+                                        pages = responsiveIsotope[i][1];
+                                        break;
+                                    }
+
+
+
+                                }
+
+                                return pages;
+                            }
+
+                            function setPagination() {
+
+                                var SettingsPagesOnItems = function () {
+
+                                    var itemsLength = $container.children(itemSelector).length;
+
+                                    var pages = Math.ceil(itemsLength / itemsPerPage);
+                                    var item = 1;
+                                    var page = 1;
+                                    var selector = itemSelector;
+                                    selector += (currentFilter != '*') ? '[' + filterAtribute + '="' + currentFilter + '"]' : '';
+
+                                    $container.children(selector).each(function () {
+                                        if (item > itemsPerPage) {
+                                            page++;
+                                            item = 1;
+                                        }
+                                        $(this).attr(pageAtribute, page);
+                                        item++;
+                                    });
+
+                                    currentNumberPages = page;
+
+                                }();
+
+                                var CreatePagers = function () {
+
+                                    var $isotopePager = ($('.' + pagerClass).length == 0) ? $('<div class="' + pagerClass + '"></div>') : $('.' + pagerClass);
+
+                                    $isotopePager.html('');
+
+                                    for (var i = 0; i < currentNumberPages; i++) {
+                                        var $pager = $('<a href="javascript:void(0);" class="pager " ' + pageAtribute + '="' + (i + 1) + '"></a>')
+                                        $pager.html(i + 1);
+
+                                        $pager.click(function () {
+                                            var page = $(this).eq(0).attr(pageAtribute);
+                                            goToPage(page);
+                                        });
+
+                                        $pager.appendTo($isotopePager);
+                                    }
+
+                                    $container.after($isotopePager);
+
+                                }();
+
+                            }
+
+                            setPagination();
+                            goToPage(1);
+
+                            //Adicionando Event de Click para as categorias
+                            $('.filters a').click(function () {
+                                var filter = $(this).attr(filterAtribute);
+                                currentFilter = filter;
+
+                                setPagination();
+                                goToPage(1);
+
+
+                            });
+
+                            //Evento Responsivo
+                            $(window).resize(function () {
+                                itemsPerPage = defineItemsPerPage();
+                                setPagination();
+                            });
+
+
+
+                        });
+
+
+
+                        $(document).ready(function () {
+
+                            // filter items on button click
+                            $('.filter-button-group').on('click', 'li', function () {
+                                var filterValue = $(this).attr('data-filter');
+                                $('.grid').isotope({
+                                    filter: filterValue
+                                });
+                                $('.filter-button-group li').removeClass('active');
+                                $(this).addClass('active');
+                            });
+                        })
+
+
+                        $(document).ready(function () {
+
+                            // filter items on button click
+                            $('.isotope-pager').on('click', 'a', function () {
+                                var filterValue = $(this).attr('data-page');
+
+                                $('.isotope-pager a').removeClass('active');
+                                $(this).addClass('active');
+                            });
+                        })
+
+
+
+
+
+
+
+
+                        $(document).ready(function () {
+                            $('.popupimg1').magnificPopup({
+                                type: 'image',
+                                mainClass: 'mfp-with-zoom',
+                                gallery: {
+                                    enabled: true
+                                },
+
+                                zoom: {
+                                    enabled: true,
+
+                                    duration: 300, // duration of the effect, in milliseconds
+                                    easing: 'ease-in-out', // CSS transition easing function
+
+                                    opener: function (openerElement) {
+
+                                        return openerElement.is('img') ? openerElement : openerElement.find('img');
+                                    }
+                                }
+
+                            });
+
+                        });
+                        // $('div[data-filter="HEALTHY"]').css("border", "solid 5px #00E600	").css("border-radius", "15px");
+                        $('div[data-filter="UNHEALTHY"]').css("border", "solid 5px red ").css("border-radius", "15px");
+        // $('div[data-filter="UNKNOWN"]').css("border", "solid 5px gray ").css("border-radius", "15px");
+                    </script>
+    </body>

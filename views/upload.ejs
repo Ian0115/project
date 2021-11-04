@@ -1,0 +1,181 @@
+<%- include('parts/head1') %>
+<body>
+     <!--PreLoader-->
+     <div class="loader">
+        <div class="loader-inner">
+            <div class="circle"></div>
+        </div>
+    </div>
+    <!--PreLoader Ends-->
+
+    <!-- header -->
+    <%- include('parts/menu') %>
+    <!-- end search arewa -->
+
+    <!-- breadcrumb-section -->
+    <div class="breadcrumb-section breadcrumb-bg" id="CameraImg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="breadcrumb-text">
+                        <h1>上傳照片</h1>
+                        <p>diagnose your crops</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end breadcrumb section -->
+
+    <!-- contact form -->
+    <% if(session.users){ %>
+    <div class="contact-from-section mt-150 mb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 mb-5 mb-lg-0">
+                    <div class="form-title">
+                        <h2 id="Camera">識別病種</h2>
+                        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, ratione! Laboriosam est, assumenda. Perferendis, quo alias quaerat aliquid. Corporis ipsum minus voluptate? Dolore, esse natus!</p> -->
+                    </div>
+                    <div id="form_status"></div>
+                    <div class="contact-form">
+                        <form id="upload_form" name="upload_form" onsubmit="diagnose();return false" enctype="multipart/form-data" method="POST">
+                            <div class="u-form-file u-form-group u-form-group-5">
+                                <label for="file" class="u-form-control-hidden u-label" id="upload-label2"></label>
+                                <input type="file" placeholder="Upload your image" id="file" name="file"
+                                    class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" multiple="multiple" accept="image/*">
+                                    <div class="gallery c" style="padding-top: 10px;padding-bottom: 10px;"></div>
+                            </div>
+                            <div class="u-align-center u-form-group u-form-submit">
+                                <a href="javascript:diagnose()"
+                                    class="u-border-none u-btn u-btn-round u-btn-submit u-button-style u-radius-50 u-btn-1">上傳</a>
+                                <input type="submit" value="submit" class="u-form-control-hidden"> 
+                            </div>
+                        </form>
+                    </div>
+                    <!-- <div class="form-title">
+                        <h2 id="Camera">Diagnose Your Crops</h2>
+                    </div>
+                    <div id="form_status"></div>
+                    <div class="contact-form">
+                        <div class="u-form-file u-form-group u-form-group-5" id="box">Diagnose Your Crops
+                            <label for="file" class="u-form-control-hidden u-label"></label>
+                            <div class="gallery2 c" style="padding-top: 10px;padding-bottom: 10px;"></div>
+                        </div>    
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end contact form -->
+    <% } else { %>
+        <div class="container latest-news pt-150 pb-150">
+            <div class="col-lg-12 col-md-6">
+                <div class="news-text-box" style="text-align: center;">
+                    <a href="/login ">
+                        <h2>WELCOME
+                            <span class="orange-text">BACK</span>
+                            <h3>請登入
+                                <i class="green-text fas fa-leaf"></i>
+                            </h3>
+                        </h2>
+                    </a>
+                </div>
+            </div>
+        </div>
+    <% } %>
+
+
+    <!-- footer -->
+    <%- include('parts/footer') %>
+    <!-- end copyright -->
+    
+    <!-- jquery -->
+    <%- include('parts/js') %>
+    <script>
+      const sess= <%- JSON.stringify(sess) %>;
+    var t=0;
+    $(function() {
+        // Multiple images preview in browser
+        var imagesPreview = function(input, placeToInsertImagePreview) {
+
+            if (input.files) {
+                var filesAmount = input.files.length;
+
+                for (i = 0; i < filesAmount; i++) {
+                    var reader = new FileReader();
+                    
+                    reader.onload = function(event) {
+                        t++;
+                        $($.parseHTML('<img>')).attr('src', event.target.result).attr('id',t).on("click",function(){
+                        $(this).remove();}).appendTo(placeToInsertImagePreview);
+                        
+                    }
+                    reader.readAsDataURL(input.files[i]);
+                    
+                }
+                // for (var i = 0; i < input.files.length; i++) {
+                //     console.log(input.files[i].name);
+                    
+                // }
+                // console.log('delete Begin----------');
+                // input.files.splice(0,1);
+                // for (var i = 0; i < input.files.length; i++) {
+                //     console.log(input.files[i].name);
+                    
+                // }
+
+
+                
+            }
+        
+        };
+        $('#file').on('change', function() {
+            $('.gallery').html('');
+        });
+        $('#file').on('change', function() {
+            imagesPreview(this, 'div.gallery');
+        });
+    });
+
+        function diagnose(){
+            // const fd = new FormData(document.upload_form);
+            const fd = new FormData();
+            const files = $('#file')[0].files;
+
+            for(let i=0; i<files.length; i++){
+                fd.append('file', files[i]);
+                console.log(files[i]);
+                console.log(fd);
+            }
+            
+            
+
+            
+
+
+            console.log(fd);
+            // $.post('/upload', {file: fd}, function(data){
+            // console.log(data);
+            // }, 'json');
+            fetch('/upload', {
+                method: 'POST',
+                body: fd
+            })
+            .then(r=>r.json())
+            .then(obj=>{
+                console.log(obj);
+                // $('#myimg').attr('src','/img/'+obj.filename);
+            })
+            // var clone=input.files.cloneNode(true);
+            // console.log(clone);
+        };
+
+
+        // $(".gallery .image").on("click",function(){
+        //     console.log($(this));
+            // $(this).remove();
+            
+        // });
+    </script>
+</body>
